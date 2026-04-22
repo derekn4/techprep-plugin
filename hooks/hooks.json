@@ -9,7 +9,19 @@
             "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/inject_context.py\""
           }
         ],
-        "description": "Inject date, per-user config, and days-to-interview for /tech-coach prompts."
+        "description": "Inject date, per-user config, and days-to-interview for /tech-coach prompts. Also writes a session marker so the Stop hook can enforce prep summaries."
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/prep_summary_reminder.py\""
+          }
+        ],
+        "description": "Block the turn from ending if /tech-coach was used this session and today's prep_summary file is missing."
       }
     ]
   }

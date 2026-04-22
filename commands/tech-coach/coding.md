@@ -24,9 +24,29 @@ The authoritative walkthrough format is `${CLAUDE_PLUGIN_ROOT}/templates/coding-
 
 Ask the user which one they want if it's not obvious:
 
-1. **Problem walkthrough** — they bring a problem (pasted prompt, LeetCode number, or topic), you coach them through solving it in interview format.
+1. **Problem walkthrough** — coaching through one problem in interview format. The problem can come from three sources (see below).
 2. **Concept review** — they pick a topic (e.g., "DP on intervals", "monotonic stacks") and want a structured refresher, then practice.
 3. **Dry run on a past problem** — they redo a problem they've seen before to check retention.
+
+### Where the problem comes from (for session type 1)
+
+Three modes:
+
+**A. User pastes or references a specific problem.** They give you the prompt, a LeetCode number (e.g., "LC #200"), or a known name ("two-sum", "word ladder", "validate BST"). Use their problem as-is. If they give only a number or name without the full prompt, reconstruct the full problem text from what you know about it — prompt, examples, and constraints — and write it into a problem file (see below).
+
+**B. User picks a topic, coach chooses.** They say "give me something on DP on intervals" or "I want to drill monotonic stacks." Pick a well-known interview problem in that topic (typically a real LeetCode problem) and write the full problem text into a problem file so the session is self-contained. Don't send them elsewhere to read the prompt — the problem lives in the file.
+
+**C. Full surprise.** They say "give me whatever" or "just pick something." Read `weak_areas` from config, pick a problem in that area at their `target_level` difficulty. If no config or no weak areas, pick based on what common patterns they'd likely see at that level. Write the full problem text into a problem file.
+
+### Problem file format
+
+For modes B and C (and for mode A when the user only gives a reference, not the full text), create a file named after the problem in the current working directory or a `problems/` subdirectory — something like `./problems/longest_increasing_subsequence.md` or just `./lis_problem.md`. Fill out the coding-interview-template (at `${CLAUDE_PLUGIN_ROOT}/templates/coding-interview-template.md`) with:
+
+- The full problem prompt (written out in your own words based on the canonical LC version — don't just say "see LC #300")
+- 2–3 concrete examples with inputs and expected outputs
+- Explicit constraints (input size bounds, value ranges, edge cases to consider)
+
+Then work through the session from that file. The user fills in their approach, code, and trace in the template's other sections as they go.
 
 ## Walkthrough structure
 

@@ -5,7 +5,8 @@ A Claude Code plugin that coaches you through technical interview prep. Role-agn
 ## What it does
 
 - `/tech-coach` — router. Reads your config, asks what today's session is, routes.
-- `/tech-coach:coding` — DSA coaching with level-appropriate difficulty.
+- `/tech-coach:init` — one-shot setup for a project: creates `prep_summary/`, `current-status.md`, and the per-user config if missing.
+- `/tech-coach:coding` — DSA coaching with level-appropriate difficulty. Bring a problem or ask for one.
 - `/tech-coach:sysdesign` — system design walkthroughs calibrated to your target level.
 - `/tech-coach:behavioral` — help you craft STAR-method stories from your real experience, then refine and practice them.
 - `/tech-coach:mock` — full mock interview with a dedicated interviewer subagent.
