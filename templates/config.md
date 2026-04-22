@@ -14,7 +14,7 @@ Your current level and the level you're interviewing for. Drives calibration —
 Anything here is optional but the more you fill in, the more specific the coaching gets.
 
 - `target_company`: (company name, or leave blank)
-- `target_role`: (e.g., "SWE III", "iOS Engineer", "Backend Engineer")
+- `target_role`: (e.g., "Senior SWE", "iOS Engineer", "Backend Engineer")
 - `next_interview`: YYYY-MM-DD (or leave blank if no date yet — hook will skip the countdown)
 - `interview_format`: (e.g., "4 rounds: 2 coding + 1 sysdesign + 1 behavioral", or leave blank)
 
@@ -45,8 +45,8 @@ notes: |
 ```yaml
 current_level: mid
 target_level: senior
-target_company: Google
-target_role: SWE III
+target_company: ExampleCo
+target_role: Senior SWE
 next_interview: 2026-05-20
 interview_format: Round 1 virtual (coding + behavioral), Round 2 onsite (2x coding)
 preferred_language: python
