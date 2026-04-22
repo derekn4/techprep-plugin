@@ -91,16 +91,39 @@ Calibrate to `target_level`. If someone at `current_level: mid` tells a junior-s
 - **Retroactive rationalization.** If the decision felt different at the time, tell that version. Interviewers can smell polish.
 - **Generalities about the team.** "Our team valued collaboration" — skip it. Get to what they did.
 
-## End of session
+## Prep summary — append after each story
 
-Write `prep_summary/YYYY-MM-DD.md` covering:
+After each story is done being worked on — drafted, refined, or mock-practiced — append a **Story N** block to `prep_summary/YYYY-MM-DD.md` in the current working directory. This happens *every time* the user finishes a story, even if they immediately move to another one. Don't batch. See `${CLAUDE_PLUGIN_ROOT}/templates/prep-summary-CLAUDE.md` for the format.
 
-- Which story/stories were worked on (title + theme)
-- What changed (drafted new, refined, mock-practiced)
-- Weakest thing to fix next time
-- Any updates made to config (`have_stories_for` / `needs_stories_for`)
+Minimum fields per block:
 
-Stop hook will block without a summary.
+```markdown
+## Story N — HH:MM (Behavioral · <theme>)
+**Story:** <title, e.g., "Shipping the migration without a PM">
+**What changed:** <drafted / refined / mock-practiced — and what specifically>
+**Went well:** <specific>
+**Weak:** <specific>
+**Next focus:** <one concrete thing>
+```
+
+If the file for today doesn't exist yet, create it with a `# Prep summary — YYYY-MM-DD` header.
+
+## End-of-session wrap
+
+Before the turn ends, do three things:
+
+1. **Append a Session wrap block** synthesizing across the session's Story blocks. What's the recurring theme? (Common patterns: "we vs I" overuse, missing metrics, level mismatch, weak tradeoff framing.) One sentence.
+
+2. **Propose config updates.** Behavioral config has three relevant fields:
+   - `have_stories_for` — themes the user now has a solid story for. If a story was drafted or refined to workable quality this session, propose moving the theme(s) into this list.
+   - `needs_stories_for` — gaps. If the session revealed a gap (e.g., "you don't have a failure story yet"), propose adding the theme.
+   - `weak_areas` — behavioral weaknesses (e.g., "we-vs-I framing", "no quantified results"). If the same weakness appeared across 2+ stories, propose adding.
+
+   Be specific. Wait for user confirmation before editing. If confirmed, edit the config and note the change in the Session wrap.
+
+3. **Check `current-status.md`.** Ask whether it needs updates. Edit if so.
+
+The `Stop` hook blocks the turn from ending without today's summary file. Per-story appending satisfies it naturally.
 
 ## Principles
 

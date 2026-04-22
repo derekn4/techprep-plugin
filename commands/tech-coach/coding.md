@@ -30,13 +30,13 @@ Ask the user which one they want if it's not obvious:
 
 ### Where the problem comes from (for session type 1)
 
-Three modes:
+Three modes. **Default is C (surprise) if the user invoked `/tech-coach:coding` with no problem, topic, or further instruction.** Don't prompt them to choose — just pick and go.
 
 **A. User pastes or references a specific problem.** They give you the prompt, a LeetCode number (e.g., "LC #200"), or a known name ("two-sum", "word ladder", "validate BST"). Use their problem as-is. If they give only a number or name without the full prompt, reconstruct the full problem text from what you know about it — prompt, examples, and constraints — and write it into a problem file (see below).
 
-**B. User picks a topic, coach chooses.** They say "give me something on DP on intervals" or "I want to drill monotonic stacks." Pick a well-known interview problem in that topic (typically a real LeetCode problem) and write the full problem text into a problem file so the session is self-contained. Don't send them elsewhere to read the prompt — the problem lives in the file.
+**B. User picks a topic, coach chooses.** They say "give me something on DP on intervals" or "I want to drill monotonic stacks." Pick a well-known interview problem in that topic and write the full problem text into a problem file so the session is self-contained.
 
-**C. Full surprise.** They say "give me whatever" or "just pick something." Read `weak_areas` from config, pick a problem in that area at their `target_level` difficulty. If no config or no weak areas, pick based on what common patterns they'd likely see at that level. Write the full problem text into a problem file.
+**C. Full surprise (default when invoked empty).** Read `weak_areas` from config, pick a problem in that area at their `target_level` difficulty. If no config or no weak areas, pick based on common patterns for that target level. Write the full problem text into a problem file. Brief opener: "Targeting [level], picking something on [pattern] since that's in your weak areas. Here's the problem:" — then paste or reference the file. Skip the menu.
 
 ### Problem file format
 
@@ -88,18 +88,33 @@ If `weak_areas` in the config mentions a topic relevant to today's problem (e.g.
 - **Vague complexity.** If they say "O(n log n)," ask "Where does the log come from?"
 - **Over-optimizing early.** Correct first, fast second.
 
-## End of session
+## Prep summary — append after each problem
 
-Before wrapping up, write `prep_summary/YYYY-MM-DD.md` in the current project covering:
+After each completed problem (before moving to the next one), append a **Problem N** block to `prep_summary/YYYY-MM-DD.md` in the current working directory. Don't wait for session end. Don't ask — just do it. See `${CLAUDE_PLUGIN_ROOT}/templates/prep-summary-CLAUDE.md` for the full format.
 
-- Problem(s) attempted and the pattern/category
-- What went well (specific — "articulated brute force clearly" not "did well")
-- What was weak (specific — "missed the base case on first pass, had to be reminded")
-- One concrete thing to practice next
+Minimum fields per block:
 
-Ask the user if `current-status.md` needs any updates (e.g., interview date shifted, new feedback received).
+```markdown
+## Problem N — HH:MM (Coding · <pattern>)
+**Problem:** <title or LC reference>
+**Went well:** <specific>
+**Weak:** <specific>
+**Next focus:** <one concrete thing>
+```
 
-The `Stop` hook will block the turn from ending without a summary file, so write it before you try to conclude.
+If the file for today doesn't exist yet, create it with a `# Prep summary — YYYY-MM-DD` header, then append the block.
+
+## End-of-session wrap
+
+When the user indicates they're done (or 45+ minutes have passed, or they say "let's stop"), do three things before ending the turn:
+
+1. **Append a Session wrap block** to today's prep summary. Synthesize *across* the Problem N blocks from this session — what's the recurring theme? One sentence.
+
+2. **Propose config updates if any pattern emerged.** If a weakness showed up on 2+ problems this session, propose adding it to `weak_areas` in `~/.claude/tech-coach/config.md`. Be specific — not "DP" but "DP space optimization." Wait for user confirmation before editing. If confirmed, edit the config and note the change in the Session wrap block.
+
+3. **Check `current-status.md`.** Ask whether it needs updates (new interview date, recent feedback, etc.). Edit if so.
+
+The `Stop` hook blocks the turn from ending without today's summary file. Per-problem appending satisfies this naturally — you'll already have the file by the time wrap-up happens.
 
 ## Principles
 

@@ -55,18 +55,17 @@ Whatever track runs, the depth of coaching should match the target level:
 | Senior | Multiple approaches, optimization discussion, clarity under ambiguity. | Scale numbers, failure modes, operational concerns, multi-region, cost. | Cross-team influence, technical strategy, mentorship. |
 | Staff | Architectural reasoning under time pressure. | Multi-system tradeoffs, org-level concerns, cost-performance curves. | Leading through ambiguity, setting technical direction. |
 
-## Step 4 — End every session with a prep summary
+## Step 4 — Prep summary (incremental + session wrap)
 
-Before the turn ends, write `prep_summary/YYYY-MM-DD.md` in the current project containing:
+Every subcommand writes to `prep_summary/YYYY-MM-DD.md` in the current working directory in two phases:
 
-- What was covered
-- What went well
-- What was weak / what to practice next
-- Any updates to the user's `current-status.md` (e.g., moved past a recruiter screen, new interview date)
+1. **Incremental.** After each completed unit — one coding problem, one system design walkthrough, one behavioral story, one mock round — append a dated block to today's summary. Don't batch. Don't wait for session end.
 
-If the user is in an active interview cycle (i.e., `next_interview` is set in config), also ask whether `current-status.md` needs updating and make that edit.
+2. **Session wrap.** When the session ends, append a **Session wrap** block that synthesizes across the session's units. This is also where the coach proposes specific config updates (e.g., "add 'DP space optimization' to `weak_areas`?") and asks whether `current-status.md` needs updates. Apply confirmed changes and note them in the wrap block.
 
-The `Stop` hook will block the turn from ending if today's summary file is missing, so do this before trying to wrap up.
+The per-subcommand prompts spell out the exact block format. The `Stop` hook blocks the turn from ending without today's summary file — per-unit appending satisfies this naturally.
+
+Config updates should be **specific, proposed, and confirmed** — never silent writes. Phrasing pattern: *"The coach noticed [specific thing] on 2 problems this session. Add it to `weak_areas`? (yes/no/rephrase)"*.
 
 ## Principles
 

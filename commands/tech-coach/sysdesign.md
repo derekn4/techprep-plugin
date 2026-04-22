@@ -92,18 +92,35 @@ If the user identifies competing requirements (latency vs consistency, availabil
 
 If they notice a tension but stay silent, prompt them out loud: "I noticed these two requirements are in tension — do you see that? How would you address it?"
 
-## End of session
+## Prep summary — append after each design
 
-Write `prep_summary/YYYY-MM-DD.md` covering:
+After each completed system design walkthrough (before moving to another problem or switching gears), append a **Design N** block to `prep_summary/YYYY-MM-DD.md` in the current working directory. Don't wait for session end. See `${CLAUDE_PLUGIN_ROOT}/templates/prep-summary-CLAUDE.md` for the full format.
 
-- The problem worked on (or the topic)
-- Which steps of the seven-step flow went well
-- Which steps were weak (specific — "capacity estimation: didn't state QPS read:write ratio")
-- One concrete thing to practice next
+Minimum fields per block:
 
-Ask whether `current-status.md` needs updates.
+```markdown
+## Design N — HH:MM (Sysdesign · <problem>)
+**Problem:** <title, e.g., "URL shortener">
+**Went well:** <specific — which of the 7 steps were strong>
+**Weak:** <specific — "capacity estimation: didn't state QPS read:write ratio">
+**Next focus:** <one concrete thing>
+```
 
-Stop hook will block the turn without a summary file.
+If the file for today doesn't exist yet, create it with a `# Prep summary — YYYY-MM-DD` header.
+
+For topic deep-dives (option 4 — e.g., "explain CRDTs vs OT") that aren't a full problem walkthrough, still append a block but label it `Design N (deep-dive)`.
+
+## End-of-session wrap
+
+When the session ends, do three things before the turn concludes:
+
+1. **Append a Session wrap block** synthesizing across this session's Design blocks. What's the recurring theme? One sentence.
+
+2. **Propose config updates if a pattern emerged.** If the user stumbled on the same thing across 2+ designs (e.g., can't defend DB choice, skipping capacity estimation, monolithic consistency claims), propose adding it to `weak_areas` in `~/.claude/tech-coach/config.md`. Be specific — "sysdesign: DB choice defense" not "sysdesign." Wait for confirmation. If confirmed, edit the config and note the change in the Session wrap.
+
+3. **Check `current-status.md`.** Ask whether it needs updates (new interview date, recent feedback). Edit if so.
+
+The `Stop` hook blocks the turn from ending without today's summary file. Per-design appending satisfies it naturally.
 
 ## Principles
 

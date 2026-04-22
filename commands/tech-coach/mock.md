@@ -51,21 +51,41 @@ The user interacts directly with the subagent. You're out of the loop until it r
 
 When the subagent returns, it will produce a structured evaluation (see the `mock-interviewer.md` agent definition for the exact format). Display it to the user as-is. Don't add your own commentary on top — the evaluation is the artifact.
 
-## Step 5 — Write the prep summary
+## Step 5 — Append the mock block to today's prep summary
 
-After the evaluation is shown, prompt the user with two questions:
+Append a **Mock** block to `prep_summary/YYYY-MM-DD.md` in the current working directory. See `${CLAUDE_PLUGIN_ROOT}/templates/prep-summary-CLAUDE.md` for the full format.
 
-1. "Want to update your config based on this eval? (e.g., new weak area to add, or moving something from `needs_stories_for` to `have_stories_for`)"
-2. "Does `current-status.md` need updates? (e.g., mock round completed, upcoming real interview shifted)"
+```markdown
+## Mock — HH:MM (<round_type> · <level>)
+**Problem:** <title>
+**Rating:** HIRE | LEAN HIRE | LEAN NO HIRE | NO HIRE
+**One-line reason:** <from the eval>
+**What went well:** <top 1–2 from eval>
+**What was weak:** <top 1–2 from eval>
+**Next focus:** <concrete practice items from eval's "top 3 things to practice next">
+```
 
-Then write `prep_summary/YYYY-MM-DD.md` covering:
+If today's file doesn't exist yet, create it with a `# Prep summary — YYYY-MM-DD` header.
 
-- Mock round type and the problem
-- Evaluation rating + one-sentence reason
-- Top 1–2 things the evaluation flagged to practice next
-- Any config or status changes made
+## Step 6 — Propose specific config updates
 
-The `Stop` hook will block without a summary.
+Don't ask the vague "want to update your config?" question. Read the eval's weak spots and propose **specific diffs** with user confirmation:
+
+> "The eval flagged [specific weakness]. Propose adding `<specific phrase>` to `weak_areas` in config. Confirm?"
+
+For behavioral mocks, also check:
+- Did any story surface as solid? Propose moving its theme from `needs_stories_for` → `have_stories_for`.
+- Did any theme come up with no good story? Propose adding to `needs_stories_for`.
+
+For coding/sysdesign mocks, check `weak_areas` and `strong_areas` — propose moves in either direction based on the eval.
+
+If the user confirms, edit `~/.claude/tech-coach/config.md` and note the change in the Mock block under a **Config updates** line.
+
+## Step 7 — Check current-status.md
+
+Ask whether `current-status.md` needs updates (e.g., real interview coming up, recent recruiter contact, feedback received outside the plugin). Edit if so.
+
+The `Stop` hook will block without today's summary file. The Mock block in step 5 satisfies it.
 
 ## Notes
 

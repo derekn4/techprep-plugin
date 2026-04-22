@@ -24,13 +24,13 @@ The user is working on a coding interview problem. They did NOT invoke `/tech-co
 
 ## Three problem-source modes
 
-When the skill activates, determine which mode applies:
+When the skill activates, determine which mode applies. **If the user's message is just "give me a problem" or equivalently empty of specifics, default to mode C — don't prompt them to pick.**
 
 **A. User brings a specific problem** — pasted full prompt, or a reference like "LC #200" or a named problem. If pasted, use as-is. If only a reference, reconstruct the full prompt and write it to a problem file (see below).
 
-**B. User picks a topic, asks you to pick** — "give me a DP problem", "quiz me on BFS". Pick a canonical interview problem in that topic (typically a real LeetCode problem you know well) and write the full problem text into a file. Don't send them to leetcode.com — the problem lives in the file so the session is self-contained.
+**B. User picks a topic, asks you to pick** — "give me a DP problem", "quiz me on BFS". Pick a canonical interview problem in that topic and write the full problem text into a file.
 
-**C. Full surprise** — "give me anything", "just pick something". Read `weak_areas` from `~/.claude/tech-coach/config.md`, pick a problem in that area at their `target_level` difficulty. If config is missing, pick based on common patterns for that target level. Write the full problem text into a file.
+**C. Full surprise (default when invoked empty)** — "give me a problem", "quiz me", "just pick something", or when `/tech-coach:coding` was invoked with no further context. Read `weak_areas` from `~/.claude/tech-coach/config.md`, pick a problem in that area at their `target_level` difficulty. If config is missing, pick based on common patterns for that target level. Write the full problem text into a file and start the session.
 
 ### Problem file format
 
