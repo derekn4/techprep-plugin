@@ -1,0 +1,14 @@
+{
+  "name": "derekn4",
+  "owner": {
+    "name": "Derek Nguyen",
+    "url": "https://github.com/derekn4"
+  },
+  "plugins": [
+    {
+      "name": "tech-coach",
+      "source": "./",
+      "description": "Role-agnostic technical interview prep coach."
+    }
+  ]
+}

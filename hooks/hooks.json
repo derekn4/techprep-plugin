@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "tech-coach",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/inject_context.py\""
+          }
+        ],
+        "description": "Inject date, per-user config, and days-to-interview for /tech-coach prompts."
+      }
+    ]
+  }
+}

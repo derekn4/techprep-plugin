@@ -1,0 +1,21 @@
+{
+  "name": "tech-coach",
+  "version": "0.1.0",
+  "description": "Role-agnostic technical interview prep coach. Coding, system design, behavioral, and mock interviews calibrated to junior/mid/senior/staff levels.",
+  "author": {
+    "name": "Derek Nguyen",
+    "url": "https://github.com/derekn4"
+  },
+  "homepage": "https://github.com/derekn4/techprep-plugin",
+  "repository": "https://github.com/derekn4/techprep-plugin",
+  "license": "MIT",
+  "keywords": [
+    "interview",
+    "coding-interview",
+    "system-design",
+    "behavioral-interview",
+    "star-method",
+    "leetcode",
+    "prep"
+  ]
+}
