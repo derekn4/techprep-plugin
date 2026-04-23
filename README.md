@@ -12,6 +12,7 @@ Five coaching surfaces, each calibrated to the level you're targeting:
 - **`/tech-coach:sysdesign`** — system design walkthroughs. Full 7-step flow (requirements → non-functional → capacity → API → data → HLD → deep dives) with level-calibrated depth.
 - **`/tech-coach:behavioral`** — STAR story coaching. Draft new stories from real experience, refine existing ones, mock-practice delivery, or scan for gaps.
 - **`/tech-coach:mock`** — full mock interview round via a dedicated interviewer subagent. Runs in isolation; returns a structured evaluation (HIRE / LEAN HIRE / LEAN NO HIRE / NO HIRE).
+- **`/tech-coach:progress`** — synthesize trends across recent prep summaries. Shows session breakdown, topic distribution, mock trajectory, recurring weak spots, and proposes specific config updates.
 - **`/tech-coach:config`** — view or edit your per-user config.
 
 Three auto-activating skills complement the commands — if you paste a coding problem, ask "how would I design X?", or ask "tell me about a time…" in a regular conversation, the right coach kicks in without you needing to type a slash command.
@@ -100,7 +101,7 @@ Symmetric for strengths — if you crush a pattern consistently, the coach propo
 
 v0.1 — MVP. Role-agnostic coding / system design / behavioral coaching with per-user configuration, level-based calibration, mock interview agent, incremental prep summaries, and session-end config-update proposals.
 
-Post-MVP wishlist: `/tech-coach:progress` for cross-session synthesis, session recovery hook for Ctrl-C resilience, company-specific playbooks (Amazon LPs, Google GCA, Meta values), curated problem bank.
+Post-MVP wishlist: "where you left off" context at session start, session recovery hook for Ctrl-C resilience, company-specific playbooks (Amazon LPs, Google GCA, Meta values), `/tech-coach:retrospect` for capturing real-interview experience, pre-interview day-of ritual command.
 
 ## License
 

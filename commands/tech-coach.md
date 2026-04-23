@@ -28,8 +28,9 @@ What are we working on today?
   2. System design
   3. Behavioral (STAR coaching)
   4. Mock interview (full round)
-  5. Edit config
-  6. Set up this project (create prep_summary/ and current-status.md)
+  5. Progress report (trends across recent sessions)
+  6. Edit config
+  7. Set up this project (create prep_summary/ and current-status.md)
 
 Or paste a problem / question directly and I'll figure out the track.
 ```
@@ -39,8 +40,9 @@ If they pick a number, invoke the corresponding subcommand:
 - `2` → `/tech-coach:sysdesign`
 - `3` → `/tech-coach:behavioral`
 - `4` → `/tech-coach:mock`
-- `5` → `/tech-coach:config`
-- `6` → `/tech-coach:init`
+- `5` → `/tech-coach:progress`
+- `6` → `/tech-coach:config`
+- `7` → `/tech-coach:init`
 
 If they paste a problem/question, classify it and route to the best subcommand yourself. Don't make them pick a number twice.
 
